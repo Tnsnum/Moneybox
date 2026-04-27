@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Копилка Lite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- FAB -->
+    <button class="fab-btn" id="addBtn">+</button>
+
+    <!-- Создание -->
+    <div class="modal-overlay" id="createModal">
+        <div class="modal">
+            <h3>Новая копилка</h3>
+            <div class="form-group"><label for="piggyName">Название:</label><input type="text" id="piggyName" placeholder="Название"></div>
+            <div class="form-group"><label for="piggyGoal">Цель:</label><input type="number" id="piggyGoal" min="0" step="0.01" placeholder="10000"></div>
+            <div class="form-group"><label for="piggyStart">Начальный баланс:</label><input type="number" id="piggyStart" min="0" step="0.01" placeholder="0"></div>
+            <div class="form-group"><label for="piggyColor">Цвет:</label>
+                <select id="piggyColor">
+                    <option value="#a855f7">Фиолетовый</option><option value="#3b82f6">Голубой</option><option value="#2dd4bf">Аквамарин</option>
+                    <option value="#22c55e">Зелёный</option><option value="#eab308">Жёлтый</option><option value="#f97316">Оранжевый</option><option value="#ef4444">Красный</option>
+                </select>
+            </div>
+            <div class="modal-buttons"><button class="btn-cancel" id="cancelCreate">Отмена</button><button class="btn-save" id="savePiggy">Создать</button></div>
+        </div>
+    </div>
+
+    <!-- Редактирование -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal">
+            <h3>Изменить</h3>
+            <div class="form-group"><label for="editName">Название:</label><input type="text" id="editName"></div>
+            <div class="form-group"><label for="editGoal">Цель:</label><input type="number" id="editGoal" min="0" step="0.01"></div>
+            <div class="form-group"><label for="editBalance">Баланс:</label><input type="number" id="editBalance" min="0" step="0.01"></div>
+            <div class="form-group"><label for="editColor">Цвет:</label>
+                <select id="editColor">
+                    <option value="#a855f7">Фиолетовый</option><option value="#3b82f6">Голубой</option><option value="#2dd4bf">Аквамарин</option>
+                    <option value="#22c55e">Зелёный</option><option value="#eab308">Жёлтый</option><option value="#f97316">Оранжевый</option><option value="#ef4444">Красный</option>
+                </select>
+            </div>
+            <div class="modal-buttons"><button class="btn-cancel" id="cancelEdit">Отмена</button><button class="btn-save" id="saveEdit">Сохранить</button></div>
+        </div>
+    </div>
+
+    <!-- Транзакция -->
+    <div class="modal-overlay" id="transactionModal">
+        <div class="modal">
+            <h3 id="transactionTitle">Пополнить</h3>
+            <div class="form-group"><label for="transactionAmount">Сумма:</label><input type="number" id="transactionAmount" min="0" step="0.01" value="0"></div>
+            <div class="modal-buttons"><button class="btn-cancel" id="cancelTransaction">Отмена</button><button class="btn-save" id="confirmTransaction">Ок</button></div>
+        </div>
+    </div>
+
+    <!-- Меню копилки -->
+    <div class="modal-overlay" id="menuModal">
+        <div class="modal">
+            <button class="btn-deposit" id="menuDeposit">Пополнить</button>
+            <button class="btn-withdraw" id="menuWithdraw">Снять</button>
+            <div style="display:flex;gap:10px;margin-top:12px;">
+                <button class="btn-cancel" id="menuEdit">Изменить</button>
+                <button class="btn-cancel" id="menuDelete">Удалить</button>
+                <button class="btn-cancel" id="menuClose">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <div class="piggy-list" id="piggyList"></div>
+        <div class="empty-state unselectable" id="emptyState">Нет копилок.<br>Нажмите + чтобы создать.</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
