@@ -42,6 +42,7 @@ body {
 .btn-withdraw { background-color: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid #ef4444; }
 .btn-deposit:hover { background-color: rgba(34,197,94,0.25); }
 .btn-withdraw:hover { background-color: rgba(239,68,68,0.25); }
+.full-width { width: 100%; margin-bottom: 8px; }
 
 /* Основной контент */
 .container { max-width: 500px; margin: 0 auto; padding-top: 30px; padding-bottom: 120px; }
