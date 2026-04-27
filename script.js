@@ -49,7 +49,7 @@
                     <div class="piggy-item-name">${esc(p.name)}</div>
                     <div class="piggy-item-ratio">${fmt(p.balance)} / ${fmt(p.goal)}</div>
                 </div>
-                <div class="piggy-item-percent">${pc.toFixed(1)}%</div>`;
+                <div class="piggy-item-percent">${pc.toFixed(2)}%</div>
             el.addEventListener('click',()=>openMenu(i));
             piggyList.appendChild(el);
         });
