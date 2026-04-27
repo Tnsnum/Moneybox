@@ -40,9 +40,9 @@
         if(!piggies.length){emptyState.classList.add('show');return;}
         emptyState.classList.remove('show');
         piggies.forEach((p,i)=>{
-            const pc = p.goal>0?Math.min(100,(p.balance/p.goal)*100):0;
+            const pc = p.goal>0 ? Math.min(100, (p.balance / p.goal) * 100) : 0;
             const el = document.createElement('div');
-            el.className='piggy-item';
+            el.className = 'piggy-item';
             el.style.borderColor = p.color;
             el.innerHTML = `
                 <div class="piggy-item-left">
@@ -50,7 +50,8 @@
                     <div class="piggy-item-ratio">${fmt(p.balance)} / ${fmt(p.goal)}</div>
                 </div>
                 <div class="piggy-item-percent">${pc.toFixed(2)}%</div>
-            el.addEventListener('click',()=>openMenu(i));
+            `;
+            el.addEventListener('click', () => openMenu(i));
             piggyList.appendChild(el);
         });
     }
@@ -61,16 +62,16 @@
 
     function openTransaction(mode) {
         transactionMode = mode;
-        transactionTitle.textContent = mode==='deposit'?'Пополнить':'Снять';
+        transactionTitle.textContent = mode === 'deposit' ? 'Пополнить' : 'Снять';
         transactionAmount.value = '';
         transactionModal.classList.add('open');
-        setTimeout(()=>transactionAmount.focus(),100);
+        setTimeout(() => transactionAmount.focus(), 100);
     }
 
     function confirmTransaction() {
         const amt = parseFloat(transactionAmount.value);
-        if(isNaN(amt)||amt<=0) return;
-        if(transactionMode==='withdraw') {
+        if(isNaN(amt) || amt <= 0) return;
+        if(transactionMode === 'withdraw') {
             piggies[currentIndex].balance = Math.max(0, piggies[currentIndex].balance - amt);
         } else {
             piggies[currentIndex].balance += amt;
@@ -92,17 +93,17 @@
         const p = piggies[currentIndex];
         p.name = editName.value.trim() || p.name;
         const g = parseFloat(editGoal.value);
-        if(!isNaN(g)&&g>=0) p.goal = g;
+        if(!isNaN(g) && g >= 0) p.goal = g;
         const b = parseFloat(editBalance.value);
-        if(!isNaN(b)&&b>=0) p.balance = b;
+        if(!isNaN(b) && b >= 0) p.balance = b;
         p.color = editColor.value;
         save(); render();
         editModal.classList.remove('open');
     }
 
     function deletePiggy() {
-        if(currentIndex<0) return;
-        piggies.splice(currentIndex,1);
+        if(currentIndex < 0) return;
+        piggies.splice(currentIndex, 1);
         save(); render();
         menuModal.classList.remove('open');
     }
@@ -112,34 +113,34 @@
         if(!n) return;
         const g = parseFloat(piggyGoal.value);
         const s = parseFloat(piggyStart.value);
-        piggies.push({ name: n, goal: isNaN(g)||g<0?0:g, balance: isNaN(s)||s<0?0:s, color: piggyColor.value });
+        piggies.push({ name: n, goal: isNaN(g) || g < 0 ? 0 : g, balance: isNaN(s) || s < 0 ? 0 : s, color: piggyColor.value });
         save(); render(); createModal.classList.remove('open');
-        piggyName.value=''; piggyGoal.value=''; piggyStart.value=''; piggyColor.value='#a855f7';
+        piggyName.value = ''; piggyGoal.value = ''; piggyStart.value = ''; piggyColor.value = '#a855f7';
     }
 
     function closeAll() {
-        [createModal,editModal,menuModal,transactionModal].forEach(m=>m.classList.remove('open'));
-        currentIndex=-1;
+        [createModal, editModal, menuModal, transactionModal].forEach(m => m.classList.remove('open'));
+        currentIndex = -1;
     }
 
-    addBtn.onclick = ()=>{ createModal.classList.add('open'); piggyName.focus(); };
-    document.getElementById('cancelCreate').onclick = ()=>createModal.classList.remove('open');
+    addBtn.onclick = () => { createModal.classList.add('open'); piggyName.focus(); };
+    document.getElementById('cancelCreate').onclick = () => createModal.classList.remove('open');
     document.getElementById('savePiggy').onclick = createPiggy;
-    document.getElementById('cancelEdit').onclick = ()=>editModal.classList.remove('open');
+    document.getElementById('cancelEdit').onclick = () => editModal.classList.remove('open');
     document.getElementById('saveEdit').onclick = saveEdit;
-    document.getElementById('menuDeposit').onclick = ()=>openTransaction('deposit');
-    document.getElementById('menuWithdraw').onclick = ()=>openTransaction('withdraw');
+    document.getElementById('menuDeposit').onclick = () => openTransaction('deposit');
+    document.getElementById('menuWithdraw').onclick = () => openTransaction('withdraw');
     document.getElementById('menuEdit').onclick = openEdit;
     document.getElementById('menuDelete').onclick = deletePiggy;
-    document.getElementById('menuClose').onclick = ()=>menuModal.classList.remove('open');
-    document.getElementById('cancelTransaction').onclick = ()=>transactionModal.classList.remove('open');
+    document.getElementById('menuClose').onclick = () => menuModal.classList.remove('open');
+    document.getElementById('cancelTransaction').onclick = () => transactionModal.classList.remove('open');
     document.getElementById('confirmTransaction').onclick = confirmTransaction;
 
-    document.addEventListener('keydown', e=>{
-        if(e.key==='Escape') closeAll();
-        if(e.key==='Enter' && createModal.classList.contains('open')) createPiggy();
-        if(e.key==='Enter' && editModal.classList.contains('open')) saveEdit();
-        if(e.key==='Enter' && transactionModal.classList.contains('open')) confirmTransaction();
+    document.addEventListener('keydown', e => {
+        if(e.key === 'Escape') closeAll();
+        if(e.key === 'Enter' && createModal.classList.contains('open')) createPiggy();
+        if(e.key === 'Enter' && editModal.classList.contains('open')) saveEdit();
+        if(e.key === 'Enter' && transactionModal.classList.contains('open')) confirmTransaction();
     });
 
     load();
