@@ -36,13 +36,19 @@ body {
 .btn-save { background-color: var(--bg); color: var(--text); border: 1px solid #a855f7; flex: 2; }
 .btn-cancel:hover, .btn-save:hover { background-color: var(--hover); }
 
-/* Меню копилки */
-.btn-deposit, .btn-withdraw { width: 100%; padding: 14px; border-radius: 12px; font-size: 16px; cursor: pointer; font-family: 'Times New Roman', serif; transition: all 0.2s; }
-.btn-deposit { background-color: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid #22c55e; margin-bottom: 8px; }
-.btn-withdraw { background-color: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid #ef4444; }
-.btn-deposit:hover { background-color: rgba(34,197,94,0.25); }
-.btn-withdraw:hover { background-color: rgba(239,68,68,0.25); }
-.full-width { width: 100%; margin-bottom: 8px; }
+/* Меню копилки - все кнопки в столбик */
+.menu-btn {
+    width: 100%; padding: 14px; border-radius: 12px; font-size: 16px; cursor: pointer;
+    font-family: 'Times New Roman', serif; transition: all 0.2s;
+    display: block; margin-bottom: 8px;
+}
+.menu-btn:last-child { margin-bottom: 0; }
+.menu-deposit { background-color: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid #22c55e; }
+.menu-withdraw { background-color: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid #ef4444; }
+.menu-neutral { background-color: var(--bg); color: var(--text); border: 1px solid var(--border); }
+.menu-deposit:hover { background-color: rgba(34,197,94,0.25); }
+.menu-withdraw:hover { background-color: rgba(239,68,68,0.25); }
+.menu-neutral:hover { background-color: var(--hover); }
 
 /* Основной контент */
 .container { max-width: 500px; margin: 0 auto; padding-top: 30px; padding-bottom: 120px; }
